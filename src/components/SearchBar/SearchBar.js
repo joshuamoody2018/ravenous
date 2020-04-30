@@ -45,7 +45,7 @@ class SearchBar extends React.Component{
 
     handleSearch(event){
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
-        event.preventDefault();
+        //the following was here when the lets go button was a '<a>':   event.preventDefault();
     }
 
     //renders sortByOptions over search bar
@@ -67,7 +67,7 @@ class SearchBar extends React.Component{
                     <input placeholder="Where?" onChange={this.handleLocationChange}/>
                 </div>
                 <div className="SearchBar-submit">
-                    <a onClick={this.handleSearch}>Let's Go</a>
+                    <button onClick={this.handleSearch}>Let's Go</button>
                 </div>
             </div>
         );
