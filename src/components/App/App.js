@@ -4,14 +4,37 @@ import './App.css';
 import BusinessList from '../BusinessList/BusinessList';
 import SearchBar from '../SearchBar/SearchBar';
 
+const business = {
+  imageSrc:'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg',
+  name:'MarginOtto Pizzeria',
+  address:'1010 Paddington Way',
+  city:'Flavortown',
+  state:'NY',
+  zipCode:'10101',
+  category:'Italian',
+  rating:4.5,
+  reviewCount:90
+};
+
+const businesses = [];
+for(let i=0; i<6; i++){
+  businesses.push(business);
+};
+
 class App extends React.Component{
-  
+  constructor(props){
+    super(props);
+  }
+
+  searchYelp(term, location, sortBy){
+    console.log(`Searching Yelp with ${term}, ${location}, ${sortBy}`);
+  }
   render(){
     return (
-      <div class='App'>
+      <div className='App'>
         <h1>ravenous</h1>
-        <SearchBar/>
-        <BusinessList/>
+        <SearchBar searchYelp={this.searchYelp}/>
+        <BusinessList businesses={businesses}/>
       </div>
     );
   }
