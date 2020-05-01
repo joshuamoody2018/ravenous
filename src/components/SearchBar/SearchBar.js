@@ -16,6 +16,7 @@ class SearchBar extends React.Component{
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
 
         //object created to store options, values are determined by yelp API
         this.sortByOptions = {
@@ -45,7 +46,12 @@ class SearchBar extends React.Component{
 
     handleSearch(event){
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
-        //the following was here when the lets go button was a '<a>':   event.preventDefault();
+    }
+
+    handleKeyPress(event){
+        if(event.key === 'Enter'){
+            this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
+        }
     }
 
     //renders sortByOptions over search bar
@@ -63,8 +69,8 @@ class SearchBar extends React.Component{
                     <ul>{this.renderSortByOptions()}</ul>
                 </div>
                 <div className="SearchBar-fields">
-                    <input placeholder="Search Business" onChange={this.handleTermChange}/>
-                    <input placeholder="Where?" onChange={this.handleLocationChange}/>
+                    <input placeholder="Search Business" onChange={this.handleTermChange} onKeyPress={this.handleTermChange, this.handleKeyPress}/>
+                    <input placeholder="Where?" onChange={this.handleLocationChange} onKeyPress={this.handleLocationChange, this.handleKeyPress}/>
                 </div>
                 <div className="SearchBar-submit">
                     <button onClick={this.handleSearch}>Let's Go</button>
